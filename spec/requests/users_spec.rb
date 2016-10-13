@@ -7,7 +7,9 @@ RSpec.describe "Users", type: :request do
       User.create name: 'user2'
     end
 
-    it { is_expected.to eq(200) }
-    it { expect(response.body).to eq('aa') }
+    it do
+      is_expected.to eq(200)
+      expect(response.body).to eq('aa')
+    end
   end
 end
