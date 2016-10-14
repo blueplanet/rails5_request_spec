@@ -20,8 +20,24 @@ RSpec.describe "Users", type: :request do
       { user: { name: 'test user' } }
     }
 
-    it do
-      is_expected.to eq(201)
+    context 'パラメータが正しい場合' do
+      it do
+        expect {
+          is_expected.to eq(201)
+        }.to change(User, :count).by(1)
+      end
+    end
+    context 'パラメータが正しくない場合' do
+      context 'nameが空の場合' do
+        let(:params) { { user: { user: nil } } }
+        it do
+          expect {
+            is_expected.to eq(422)
+          }.to_not change(User, :count)
+
+          expect(response.body).to eq({ name: [I18n.t('activerecord.errors.blank')]}.to_json)
+        end
+      end
     end
   end
 end

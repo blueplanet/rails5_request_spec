@@ -38,3 +38,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rspec-request_describer'
 gem 'rspec-rails'
 gem 'guard-rspec'
+
+group :development do
+  gem 'i18n-tasks'
+end
